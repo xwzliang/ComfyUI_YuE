@@ -1,9 +1,12 @@
 # ComfyUI_YuE
 [YuE](https://github.com/multimodal-art-projection/YuE) is a groundbreaking series of open-source foundation models designed for music generation, specifically for transforming lyrics into full songs (lyrics2song). you can use it in comfyUI
 
+# Update
+* add a final audio （30s）,coming soon
+
 # Example
 
-![](https://github.com/smthemex/ComfyUI_YuE/blob/main/example.jpg)
+![](https://github.com/smthemex/ComfyUI_YuE/blob/main/example.png)
 
 # Citation
 ```
