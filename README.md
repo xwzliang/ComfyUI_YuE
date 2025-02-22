@@ -80,9 +80,11 @@ pip install -r requirements.txt
 look [Here](https://github.com/multimodal-art-projection/YuE?tab=readme-ov-file#prompt-engineering-guide) to find how to edit your Genre Tagging Prompt and Lyrics Prompt，链接直达官方的歌词和提示词指导。
   
 # 6.Example
-
+* use fp16 and use_mmgp
 ![](https://github.com/smthemex/ComfyUI_YuE/blob/main/example.png)
-
+* use int8 bitsandbytes
+![](https://github.com/smthemex/ComfyUI_YuE/blob/main/int8_example.png)
+  
 # 7.Citation
 ```
 @misc{yuan2025yue,
