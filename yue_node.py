@@ -195,7 +195,7 @@ class YUE_Stage_A_Sampler:
                 "prompt_end_time": ("FLOAT", {"default": 30.0, "min": 1.0, "max": 1024.0, "step": 0.5}),
                 "max_new_tokens": ("INT", {"default": 3000, "min": 2944, "max": 16384, "step": 1, "display": "number"}),
                 "use_dual_tracks_prompt":("BOOLEAN",{"default":True}),
-                "use_audio_prompt":("BOOLEAN",{"default":True}),
+                "use_audio_prompt":("BOOLEAN",{"default":False}),
                 "offload_model":("BOOLEAN",{"default":True}),
                 "stage1_no_guidance":("BOOLEAN",{"default":True}),
 
