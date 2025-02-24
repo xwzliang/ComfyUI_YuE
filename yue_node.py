@@ -17,10 +17,10 @@ from .inference.infer import load_audio_mono,encode_audio,split_lyrics,BlockToke
 from .inference.xcodec_mini_infer.vocoder import build_codec_model,process_audio
 from .inference.xcodec_mini_infer.post_process_audio import replace_low_freq_with_energy_matched
 from .inference.xcodec_mini_infer.models.soundstream_hubert_new import SoundStream
-from .inference.infer_stage1 import Stage1Pipeline_EXL2,SampleSettings,Stage1Pipeline_HF
-from .inference.infer_stage2 import Stage2Pipeline_EXL2 ,Stage2Pipeline_HF
-from .inference.infer_postprocess import post_process
-from mmgp import offload
+# from .inference.infer_stage1 import Stage1Pipeline_EXL2,SampleSettings,Stage1Pipeline_HF
+# from .inference.infer_stage2 import Stage2Pipeline_EXL2 ,Stage2Pipeline_HF
+# from .inference.infer_postprocess import post_process
+# from mmgp import offload
 import folder_paths
 
 
@@ -66,6 +66,7 @@ class YUE_Stage_A_Loader:
         resume_path=folder_paths.get_full_path("yue", xcodec_ckpt)
 
         if quantization_model=="exllamav2":
+            from .inference.infer_stage1 import Stage1Pipeline_EXL2,Stage1Pipeline_HF
             
             torch.autograd.grad_mode._enter_inference_mode(True)
             torch.autograd.set_grad_enabled(False)
@@ -146,6 +147,7 @@ class YUE_Stage_A_Loader:
             stage_1_model.eval()
 
             if use_mmgp:
+                from mmgp import offload
                 pipe = { "transformer": stage_1_model,}
                 kwargs  = {}
                 if mmgp_profile == 4 :
@@ -227,6 +229,7 @@ class YUE_Stage_A_Sampler:
         mmgp_profile=model.get("mmgp_profile")
         
         if quantization_model=="exllamav2":
+            from .inference.infer_stage1 import SampleSettings
             # with open(lyrics_txt_path) as f:
             #     lyrics = f.read().strip()    
             lyrics=lyrics_prompt.strip()   
@@ -414,6 +417,7 @@ class YUE_Stage_B_Loader:
        
         if not use_mmgp:
             if quantization_model=="exllamav2":
+                from .inference.infer_stage2 import Stage2Pipeline_EXL2 ,Stage2Pipeline_HF
                 if exllamav2_cache_mode=="FP16":
                     print("**********Loading fp16*********")
                     model_stage2=Stage2Pipeline_HF(model_path=stage_B_repo, device=device, batch_size=stage2_batch_size)
@@ -459,6 +463,7 @@ class YUE_Stage_B_Loader:
                 model_stage2.eval()
         else:
             print("**********Loading mmpg*********")
+            from mmgp import offload
             model_stage2 = AutoModelForCausalLM.from_pretrained(
                     stage_B_repo, 
                     torch_dtype=torch.float16,
@@ -517,6 +522,7 @@ class YUE_Stage_B_Sampler:
         output_dir=folder_paths.get_output_directory()
 
         if quantization_model=="exllamav2":
+            from .inference.infer_postprocess import post_process
             outputs = model_stage2.generate(output_dir=output_dir)
             model_stage2.save(output_dir=output_dir, outputs=outputs)
             codec_model=stage1_set.get("codec_model")
