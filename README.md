@@ -75,9 +75,12 @@ pip install -r requirements.txt
 * 显存小于等于16G，用int8的repo，'quantization_model'选int8，关闭use_mmgp，prompt_end_time就是渲染时长先设置为30秒测试（效果还行，速度奇慢6716s，不要尝试）
 * 显存小于等于16G，用exllamav2的Q8 repo，'quantization_model'选exllamav2，关闭use_mmgp，exllamav2_cache_mode选择Q8，prompt_end_time就是渲染时长先设置为30秒测试（效果一般，速度非常快）
 * 显存大于等于16G，用原生的repo，'quantization_model'选exllamav2，关闭use_mmgp，exllamav2_cache_mode选择fp16,prompt_end_time就是渲染时长先设置为30秒测试（效果和速度未测试）
+* if "use_dual_tracks_prompt"  set ture ,will Instrumental from file 'pop.00001.Instrumental.mp3' or if set "use_audio_prompt" ture and "use_dual_tracks_prompt" False will Instrumental from file "pop.00001.mp3",you can replace it ,but keep name in same.
+* 开启use_dual_tracks_prompt 会借鉴'pop.00001.Instrumental.mp3'，开启"use_audio_prompt"并关闭"use_dual_tracks_prompt" 会借鉴 "pop.00001.mp3"，你可以用其他歌曲替换掉这两个，但是逐一保持命名不要动，因为在代码里写死了。我迟点再改。
 
 # 5.Prompt Engineering Guide 提示词和歌词撰写官方指导
-look [Here](https://github.com/multimodal-art-projection/YuE?tab=readme-ov-file#prompt-engineering-guide) to find how to edit your Genre Tagging Prompt and Lyrics Prompt，链接直达官方的歌词和提示词指导。
+* look [Here](https://github.com/multimodal-art-projection/YuE?tab=readme-ov-file#prompt-engineering-guide) to find how to edit your Genre Tagging Prompt and Lyrics Prompt，链接直达官方的歌词和提示词指导。
+* use [top_200_tags.json](https://github.com/smthemex/ComfyUI_YuE/blob/main/top_200_tags.json) to edit your prompts，查看top_200_tags.json来撰写你的歌词提示
   
 # 6.Example
 * use fp16 and use_mmgp
