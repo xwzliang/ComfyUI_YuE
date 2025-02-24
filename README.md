@@ -17,21 +17,21 @@ pip install -r requirements.txt
 * triton库不是必须的，不过节点里的加速方法用了或许更快，不保真
 
 # 3.models
-* 3.1 download from [here](https://huggingface.co/m-a-p/xcodec_mini_infer/tree/main/final_ckpt) and [here](https://huggingface.co/m-a-p/YuE-upsampler/tree/main) path like below，模型结构如下
+* 3.1 download from [here](https://huggingface.co/m-a-p/xcodec_mini_infer/tree/main/final_ckpt) and [here](https://huggingface.co/m-a-p/YuE-upsampler/tree/main) path like below，模型路径结构如下
 ```
 --   ComfyUI/models/yue
     ├── ckpt_00360000.pth
     ├── decoder_131000.pth
     ├── decoder_151000.pth
 ```
-* 3.2 download from [here](https://huggingface.co/m-a-p/xcodec_mini_infer/tree/main/semantic_ckpts/hf_1_325000), path like below，模型结构如下
+* 3.2 download from [here](https://huggingface.co/m-a-p/xcodec_mini_infer/tree/main/semantic_ckpts/hf_1_325000), path like below，模型路径结构如下
 ```
 --   ComfyUI/custom_nodes/ComfyUI_YuE/inference/xcodec_mini_infer/semantic_ckpts/hf_1_325000/
     ├── pytorch_model.bin
 ```
 
 * 3.3 if your GPU is 4090 or 5090 or best，just use repo below,Of course, you can also just fill out the repo，如果你是4090以上，可以用fp16，只填repo会自动下载，以下是离线版；   
-* 3.3.1 english [YuE-s1-7B-anneal-en-cot](https://huggingface.co/m-a-p/YuE-s1-7B-anneal-en-cot) or[YuE-s1-7B-anneal-en-icl](https://huggingface.co/m-a-p/YuE-s1-7B-anneal-en-icl)  or chinese [YuE-s1-7B-anneal-zh-cot](https://huggingface.co/m-a-p/YuE-s1-7B-anneal-zh-cot),or other ,path like below，模型结构如下
+* 3.3.1 english [YuE-s1-7B-anneal-en-cot](https://huggingface.co/m-a-p/YuE-s1-7B-anneal-en-cot) or[YuE-s1-7B-anneal-en-icl](https://huggingface.co/m-a-p/YuE-s1-7B-anneal-en-icl)  or chinese [YuE-s1-7B-anneal-zh-cot](https://huggingface.co/m-a-p/YuE-s1-7B-anneal-zh-cot),or other ,path like below，模型路径结构如下
 ```
 --   anypath/YuE-s1-7B-anneal-en-icl   # 11.5G
     ├── config.json
@@ -42,7 +42,7 @@ pip install -r requirements.txt
     ├── model-00002-of-00003.safetensors
     ├── model-00003-of-00003.safetensors
 ```
-* 3.3.2 just one  [YuE-s2-1B-general](https://huggingface.co/m-a-p/YuE-s2-1B-general/tree/main) path like below，模型结构如下
+* 3.3.2 just one  [YuE-s2-1B-general](https://huggingface.co/m-a-p/YuE-s2-1B-general/tree/main) path like below，模型路径结构如下
 ```
 --   anypath/YuE-s2-1B-general  #  3.65G
     ├── config.json
@@ -55,7 +55,7 @@ pip install -r requirements.txt
   - [int8](https://huggingface.co/Alissonerdx/YuE-s1-7B-anneal-en-cot-int8)  bitsandbytes  [@alisson-anjos](https://github.com/alisson-anjos)
   - [exllamav2](https://huggingface.co/collections/Alissonerdx/yue-models-exllamav2-67a539be76b5225ebda95323)   use fp16 Q8,Q6...[@alisson-anjos](https://github.com/alisson-anjos)
   - [deepbeepmeep](https://github.com/deepbeepmeep/YuEGP) use fp16,int8... [@deepbeepmeep](https://github.com/deepbeepmeep)
- 3.4.1 path like below，模型结构如下
+ 3.4.1 path like below，模型路径结构如下
 ```
 --   anypath/YuE-s1-7B-anneal-en-cot-exl2-8.0bpw
     ├── config.json
@@ -77,6 +77,7 @@ pip install -r requirements.txt
 * 显存大于等于16G，用原生的repo，'quantization_model'选exllamav2，关闭use_mmgp，exllamav2_cache_mode选择fp16,prompt_end_time就是渲染时长先设置为30秒测试（效果和速度未测试）
 * if "use_dual_tracks_prompt"  set ture ,will Instrumental from file 'pop.00001.Instrumental.mp3' or if set "use_audio_prompt" ture and "use_dual_tracks_prompt" False will Instrumental from file "pop.00001.mp3",you can replace it ,but keep name in same.
 * 开启use_dual_tracks_prompt 会借鉴'pop.00001.Instrumental.mp3'，开启"use_audio_prompt"并关闭"use_dual_tracks_prompt" 会借鉴 "pop.00001.mp3"，你可以用其他歌曲替换掉这两个，但是逐一保持命名不要动，因为在代码里写死了。我迟点再改。
+* use_mmgp model have 5 choice（mmgp_profile） ，3-4 will quantization model auto，mmgp模式在mmgp_profile有5个选项，大于等于3会自动量化，数字越大需要内存越大，需要显存越小，但是越慢.
 
 # 5.Prompt Engineering Guide 提示词和歌词撰写官方指导
 * look [Here](https://github.com/multimodal-art-projection/YuE?tab=readme-ov-file#prompt-engineering-guide) to find how to edit your Genre Tagging Prompt and Lyrics Prompt，链接直达官方的歌词和提示词指导。
