@@ -45,7 +45,7 @@ class YUE_Stage_A_Loader:
         ckpt_list_xcodec = [i for i in folder_paths.get_filename_list("yue") if "36" in i]
         return {
             "required": {
-                "stage_A_repo": ("STRING",{"default": "F:/test/ComfyUI/models/diffusers/Doctor-Shotgun/YuE-s1-7B-anneal-en-cot-exl2"},),
+                "stage_A_repo": ("STRING",{"default": "m-a-p/YuE-s1-7B-anneal-en-cot"},),
                 "xcodec_ckpt": (["none"] + ckpt_list_xcodec,),
                 "quantization_model":(["fp16","int8","int4","exllamav2"],),
                 "use_mmgp":("BOOLEAN",{"default":True}),
@@ -394,7 +394,7 @@ class YUE_Stage_B_Loader:
         return {
             "required": {
                 "info": ("quantization_model",),
-                "stage_B_repo": ("STRING",{"default": "F:/test/ComfyUI/models/diffusers/Doctor-Shotgun/YuE-s2-1B-general-exl2"},),
+                "stage_B_repo": ("STRING",{"default": "m-a-p/YuE-s2-1B-general"},),
                 "stage2_cache_size": ("INT",{"default": 8192, "min": 4096, "max": MAX_SEED, "step": 64, "display": "number"}),
                 "stage2_batch_size": ("INT",{"default": 2, "min": 1, "max": 64, "step": 1, "display": "number"}),
                 "exllamav2_cache_mode": (["FP16","Q8","Q6", "Q4"],),
