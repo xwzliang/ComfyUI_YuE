@@ -1,6 +1,11 @@
 # ComfyUI_YuE
 [YuE](https://github.com/multimodal-art-projection/YuE) is a groundbreaking series of open-source foundation models designed for music generation, specifically for transforming lyrics into full songs (lyrics2song). you can use it in comfyUI
 
+# Update
+* install quantization moudle (mmgp and exllamav2) if you need ； 
+* mmgp and exllamav2 的量化库在菜单选中的时候才会需要，避免有些人安装不上； 
+
+
 # 1. Installation
 
 In the ./ComfyUI /custom_node directory, run the following:   
@@ -15,7 +20,23 @@ pip install -r requirements.txt
 ```
 * triton is not necessary，I don't test it，you can try
 * triton库不是必须的，不过节点里的加速方法用了或许更快，不保真
-
+* use -no-deps if descript-audiotools need high torch 如果descript-audiotools安装需要高版本的torch ，使用pip install -no-deps descript-audiotools
+  
+* if use mmgp
+```
+  pip install mmgp
+```
+* if use exllamav2
+```
+  pip install exllamav2
+```
+ - or
+```
+git clone https://github.com/turboderp/exllamav2
+cd exllamav2
+pip install -r requirements.txt
+pip install .
+```
 # 3.models
 * 3.1 download from [here](https://huggingface.co/m-a-p/xcodec_mini_infer/tree/main/final_ckpt) and [here](https://huggingface.co/m-a-p/YuE-upsampler/tree/main) path like below，模型路径结构如下
 ```
